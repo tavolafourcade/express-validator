@@ -11,11 +11,13 @@ const storage = multer.diskStorage({
 		cb(null, './public/images/avatars');
 	},
 	filename: (req, file, cb) => {
+		//Usando template strings obtenemos la fecha, le agregamos _img y la extensión de la img.
 		let fileName = `${Date.now()}_img${path.extname(file.originalname)}`;
 		cb(null, fileName);
 	}
 })
 
+//Le paso storage para que multer suba el archivo
 const uploadFile = multer({ storage });
 
 const usersController = require('../controllers/userController');
@@ -48,6 +50,8 @@ const validations = [
 router.get('/register', usersController.register);
 
 // Procesar el registro
+//single hace referencia a un solo archivo.
+//avatar es el nombre en el formulario para ese input.
 router.post('/register', uploadFile.single('avatar'), validations, usersController.processRegister);
 
 // Formulario de login

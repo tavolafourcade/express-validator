@@ -9,6 +9,7 @@ const controller = {
 		
 		if (resultValidation.errors.length > 0) {
 			return res.render('userRegisterForm', {
+				//mapped() convierte el array de resulValidation en un objeto literal
 				errors: resultValidation.mapped(),
 				oldData: req.body
 			});

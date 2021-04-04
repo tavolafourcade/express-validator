@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 
+//urlencoded es un Middleware que permite recibir la info que viaja a través de un formulario
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('./public'));
